@@ -6,13 +6,12 @@ import (
 )
 
 var (
-	ok      bool
 	info    *debug.BuildInfo
 	version = "dev"
 )
 
 func init() {
-	info, ok = debug.ReadBuildInfo()
+	info, _ = debug.ReadBuildInfo()
 }
 
 // Inspect whatever type and get module information in return
