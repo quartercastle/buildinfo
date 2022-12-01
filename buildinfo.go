@@ -1,4 +1,4 @@
-package debug
+package buildinfo
 
 import (
 	"reflect"
@@ -48,15 +48,19 @@ func Inspect(t any) *debug.Module {
 // Version returns the vcs.revision from buildinfo or injected version if set at
 // built time. A version can be injected with the command below:
 //
-//	go build -ldflags "-X github.com/kvartborg/buildinfo.version="
-func Version() (string, error) {
+//	go build -ldflags "-X github.com/quartercastle/buildinfo.version="
+func Version() string {
 	if info == nil {
+		return version
+	}
+
+	if version != "dev" {
 		return version
 	}
 
 	for _, setting := range info.Settings {
 		if setting.Key == "vcs.revision" {
-			return setting.Value
+			return setting.Value[:7]
 		}
 	}
 

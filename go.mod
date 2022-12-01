@@ -1,3 +1,3 @@
-module github.com/kvartborg/buildinfo
+module github.com/quartercastle/buildinfo
 
 go 1.19
