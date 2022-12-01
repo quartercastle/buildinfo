@@ -15,16 +15,6 @@ func init() {
 	info, ok = debug.ReadBuildInfo()
 }
 
-// Runtime returns the current Go runtime version
-func Runtime() string {
-	return info.GoVersion
-}
-
-// Path returns the import path
-func Path() string {
-	return info.Path
-}
-
 // Inspect whatever type and get module information in return
 func Inspect(t any) *debug.Module {
 	if info == nil {
@@ -48,7 +38,7 @@ func Inspect(t any) *debug.Module {
 // Version returns the vcs.revision from buildinfo or injected version if set at
 // built time. A version can be injected with the command below:
 //
-//	go build -ldflags "-X github.com/quartercastle/buildinfo.version="
+//	go build -ldflags "-X github.com/quartercastle/buildinfo.version=v1.0.0"
 func Version() string {
 	if info == nil {
 		return version
